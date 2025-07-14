@@ -2,6 +2,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LoginPage } from './pages/LoginPage';
+import { DashboardPage } from './pages/DashboardPage';
+import { ChatProvider } from './context/ChatContext';
+
+const PrivateRoute = ({ children }) => {
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
 
 function AppContent() {
   return (
@@ -10,8 +17,17 @@ function AppContent() {
 
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<Navigate to="/dashboard" replace />} /> 
-        
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <DashboardPage />
+            </PrivateRoute>
+          }
+        />
+
         <Route path="*" element={
           <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-950">
             <h1 className="text-4xl font-bold text-gray-800 dark:text-white">404 - Page Not Found</h1>
@@ -26,7 +42,9 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <AppContent />
+        <ChatProvider>
+          <AppContent />
+        </ChatProvider>
       </AuthProvider>
     </Router>
   );
