@@ -18,7 +18,7 @@ export const ChatMessage = ({ message }) => {
 
   return (
     <div
-      className={`group relative max-w-[80%] px-4 py-2 rounded-lg shadow-sm text-sm whitespace-pre-wrap break-words mt-10 ${isUser
+      className={`group relative max-w-[49%] px-4 py-2 rounded-lg shadow-sm text-sm whitespace-pre-wrap break-words mt-10 ${isUser
         ? 'self-end bg-blue-100 dark:bg-blue-600 text-left text-gray-900 dark:text-white'
         : 'self-start bg-gray-100 dark:bg-gray-700 text-left text-gray-800 dark:text-white'
         }`}
@@ -29,6 +29,7 @@ export const ChatMessage = ({ message }) => {
           src={message.imageUrl}
           alt="sent"
           className="mb-2 rounded-md max-w-xs max-h-48 object-cover"
+          style={{width: '100%'}}
         />
       )}
       {message.text}
