@@ -4,7 +4,6 @@ import { useAuth } from '../context/AuthContext';
 import { showToast } from '../lib/toast';
 import { SearchBar } from '../components/common/SearchBar';
 import { Link } from 'react-router-dom';
-import { DarkModeToggle } from '../components/common/DarkModeToggle';
 
 export const DashboardPage = () => {
     const { chatrooms, createChatroom, deleteChatroom, setActiveChatroomId } = useChat();
@@ -25,8 +24,8 @@ export const DashboardPage = () => {
 
     const handleDeleteChatroom = (id, title) => {
         if (window.confirm(`Are you sure you want to delete '${title}'?`)) {
-        deleteChatroom(id);
-        showToast('success', `Chatroom '${title}' deleted.`);
+            deleteChatroom(id);
+            showToast('success', `Chatroom '${title}' deleted.`);
         }
     };
 
@@ -43,7 +42,6 @@ export const DashboardPage = () => {
             <header className="p-4 bg-white dark:bg-gray-800 shadow-md flex justify-between items-center sticky top-0 z-10">
                 <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Gemini Clone</h1>
                 <div className="flex items-center space-x-4">
-                    <DarkModeToggle />
                     <button
                         onClick={logout}
                         className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-200"
