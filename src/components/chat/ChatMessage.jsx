@@ -36,9 +36,9 @@ export const ChatMessage = ({ message }) => {
       <span className="text-xs mt-1 text-right opacity-80">
         {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
       </span>
-      {showCopy && message.sender === 'ai' && ( // Only show for AI messages
+      {showCopy && message.sender === 'ai' && (
         <button
-          onClick={handleCopy}
+          onMouseEnter={handleCopy}
           className="absolute -top-2 -right-2 bg-gray-800 text-white rounded-full p-1.5 text-xs hover:bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500 shadow-md transition duration-200"
           aria-label="Copy message"
         >
