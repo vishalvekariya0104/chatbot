@@ -89,7 +89,7 @@ export const ChatInput = ({ onSendMessage }) => {
                 placeholder="Message Gemini..."
                 rows={1}
                 className="flex-1 p-3 border border-gray-300 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white custom-scrollbar transition duration-200 overflow-y-auto"
-                style={{ maxHeight: '150px' }}
+                style={{ maxHeight: '70px' }}
             />
             <input
                 type="file"
