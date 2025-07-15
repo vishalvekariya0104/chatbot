@@ -82,14 +82,14 @@ export const ChatInput = ({ onSendMessage }) => {
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        handleSubmit(e);
+                    e.preventDefault();
+                    handleSubmit(e);
                     }
                 }}
                 placeholder="Message Gemini..."
                 rows={1}
-                className="flex-1 p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white custom-scrollbar transition duration-200"
-                style={{ minHeight: '48px', maxHeight: '150px' }}
+                className="flex-1 p-3 border border-gray-300 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white custom-scrollbar transition duration-200 overflow-y-auto"
+                style={{ maxHeight: '150px' }}
             />
             <input
                 type="file"
