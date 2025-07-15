@@ -75,7 +75,7 @@ export const DashboardPage = () => {
             <div className="flex-1 p-6 overflow-y-auto custom-scrollbar">
                 <h2 className="text-2xl font-bold mb-6">Your Chatrooms</h2>
 
-                <form onSubmit={handleCreateChatroom} className="flex gap-3 mb-6">
+                <form onSubmit={handleCreateChatroom} className="flex flex-col sm:flex-row gap-3 mb-6">
                     <input
                         type="text"
                         value={newChatroomTitle}
@@ -83,7 +83,10 @@ export const DashboardPage = () => {
                         placeholder="Enter new chatroom title"
                         className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white transition duration-200"
                     />
-                    <button type="submit" className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
+                    <button
+                        type="submit"
+                        className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 w-full sm:w-auto"
+                    >
                         Create Chatroom
                     </button>
                 </form>
