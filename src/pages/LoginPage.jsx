@@ -91,7 +91,7 @@ export const LoginPage = () => {
                                 id="phoneNumber"
                                 {...phoneRegister('phoneNumber')}
                                 className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                                placeholder="e.g., 9876543210"
+                                placeholder="Please enter your phone number"
                             />
                             {phoneErrors.phoneNumber && (
                                 <p className="mt-2 text-sm text-red-600">{phoneErrors.phoneNumber.message}</p>
@@ -119,7 +119,7 @@ export const LoginPage = () => {
                                 {...otpRegister('otp')}
                                 className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                                 maxLength={6}
-                                placeholder="e.g., 123456"
+                                placeholder="Enter your 6-digit OTP"
                             />
                             {otpErrors.otp && (
                                 <p className="mt-2 text-sm text-red-600">{otpErrors.otp.message}</p>
