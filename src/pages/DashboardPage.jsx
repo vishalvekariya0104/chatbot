@@ -4,12 +4,16 @@ import { useAuth } from '../context/AuthContext';
 import { showToast } from '../lib/toast';
 import { SearchBar } from '../components/common/SearchBar';
 import { Link } from 'react-router-dom';
+import { DarkModeToggle } from '../components/common/DarkModeToggle';
+import { DeleteConfirmationModal } from '../components/common/DeleteConfirmationModal';
 
 export const DashboardPage = () => {
     const { chatrooms, createChatroom, deleteChatroom, setActiveChatroomId } = useChat();
     const { logout } = useAuth();
     const [newChatroomTitle, setNewChatroomTitle] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
+    const [chatroomToDelete, setChatroomToDelete] = useState(null);
 
     const handleCreateChatroom = (e) => {
         e.preventDefault();
@@ -37,11 +41,28 @@ export const DashboardPage = () => {
         room.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    const openDeleteModal = (room) => {
+        setChatroomToDelete(room);
+        setModalOpen(true);
+    };
+
+    const confirmDelete = () => {
+        deleteChatroom(chatroomToDelete.id);
+        showToast('success', `Chatroom '${chatroomToDelete.title}' deleted.`);
+        setModalOpen(false);
+    };
+
+    const cancelDelete = () => {
+        setModalOpen(false);
+        setChatroomToDelete(null);
+    };
+
     return (
         <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
             <header className="p-4 bg-white dark:bg-gray-800 shadow-md flex justify-between items-center sticky top-0 z-10">
                 <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Chatbot</h1>
                 <div className="flex items-center space-x-4">
+                    <DarkModeToggle />
                     <button
                         onClick={logout}
                         className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-200"
@@ -84,7 +105,7 @@ export const DashboardPage = () => {
                                     </p>
                                 </Link>
                                 <button
-                                    onClick={() => handleDeleteChatroom(room.id, room.title)}
+                                    onClick={() => openDeleteModal(room)}
                                     className="absolute top-3 right-3 text-red-500 hover:text-red-700 p-1 rounded-full hover:bg-red-100 dark:hover:bg-red-900 transition duration-200"
                                     aria-label={`Delete chatroom ${room.title}`}
                                 >
@@ -97,6 +118,12 @@ export const DashboardPage = () => {
                     )}
                 </div>
             </div>
+            <DeleteConfirmationModal
+                isOpen={modalOpen}
+                title={chatroomToDelete?.title || ''}
+                onConfirm={confirmDelete}
+                onCancel={cancelDelete}
+            />
         </div>
     );
 };
