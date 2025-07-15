@@ -23,6 +23,7 @@ export const ChatroomPage = () => {
     const scrollRef = useRef(null);
     const prevScrollHeightRef = useRef(0);
     const [isUserScrolling, setIsUserScrolling] = useState(false);
+    const [isInitialLoading, setIsInitialLoading] = useState(true);
 
     useEffect(() => {
         setActiveChatroomId(chatroomId);
@@ -42,6 +43,11 @@ export const ChatroomPage = () => {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
+        const timeout = setTimeout(() => {
+            setIsInitialLoading(false);
+        }, 1500);
+
+        return () => clearTimeout(timeout);
     }, [chatroomId, getMessagesForChatroom, setActiveChatroomId, chatrooms, navigate, messagesPerPage]);
 
 
@@ -163,21 +169,30 @@ export const ChatroomPage = () => {
                 className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar flex flex-col-reverse"
                 onScroll={handleScroll}
             >
-                {isGeminiTyping && (
-                    <div className="p-2 text-gray-500 dark:text-gray-400 text-sm italic self-start mb-2">Gemini is typing...</div>
-                )}
-                {[...displayedMessages].reverse().map((msg) => (
-                    <ChatMessage key={msg.id} message={msg} />
-                ))}
-                {loadingOlder && (
-                    <div className="text-center py-2">
-                        <LoadingSkeleton count={3} height="20px" className="mb-2 mx-auto" width="80%" />
+                {isInitialLoading ? (
+                    <div className="space-y-6">
+                        <LoadingSkeleton count={5} height="40px" width="49%" />
+                        <LoadingSkeleton count={3} height="40px" width="49%" className="ml-auto" />
                     </div>
-                )}
-                {hasMore && (
-                    <div ref={topRef} className="text-center text-blue-500 cursor-pointer text-sm py-2 hover:underline">
-                        Load older messages
-                    </div>
+                ) : (
+                    <>
+                        {isGeminiTyping && (
+                            <div className="p-2 text-gray-500 dark:text-gray-400 text-sm italic self-start mb-2">Gemini is typing...</div>
+                        )}
+                        {[...displayedMessages].reverse().map((msg) => (
+                            <ChatMessage key={msg.id} message={msg} />
+                        ))}
+                        {loadingOlder && (
+                            <div className="text-center py-2">
+                                <LoadingSkeleton count={3} height="20px" className="mb-2 mx-auto" width="80%" />
+                            </div>
+                        )}
+                        {hasMore && (
+                            <div ref={topRef} className="text-center text-blue-500 cursor-pointer text-sm py-2 hover:underline">
+                                Load older messages
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
             <ChatInput onSendMessage={handleSendMessage} />
