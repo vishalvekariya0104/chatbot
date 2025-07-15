@@ -1,3 +1,4 @@
+// src/pages/ChatroomPage.jsx
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useChat } from '../context/ChatContext';
@@ -44,7 +45,7 @@ export const ChatroomPage = () => {
         }
         const timeout = setTimeout(() => {
             setIsInitialLoading(false);
-        }, 1500);
+        }, 1000);
 
         return () => clearTimeout(timeout);
     }, [chatroomId, getMessagesForChatroom, setActiveChatroomId, chatrooms, navigate, messagesPerPage]);
