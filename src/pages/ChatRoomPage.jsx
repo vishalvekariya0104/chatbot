@@ -1,3 +1,4 @@
+// src/pages/ChatroomPage.jsx
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useChat } from '../context/ChatContext';
@@ -48,6 +49,15 @@ export const ChatroomPage = () => {
 
         return () => clearTimeout(timeout);
     }, [chatroomId, getMessagesForChatroom, setActiveChatroomId, chatrooms, navigate, messagesPerPage]);
+
+    useEffect(() => {
+        const scrollEl = scrollRef.current;
+        if (scrollEl && !isUserScrolling) {
+            setTimeout(() => {
+                scrollEl.scrollTop = scrollEl.scrollHeight;
+            }, 100);
+        }
+    }, [displayedMessages, isGeminiTyping]);
 
 
     const loadOlderMessages = useCallback(() => {
