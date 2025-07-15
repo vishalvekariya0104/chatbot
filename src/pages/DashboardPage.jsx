@@ -40,7 +40,7 @@ export const DashboardPage = () => {
     return (
         <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
             <header className="p-4 bg-white dark:bg-gray-800 shadow-md flex justify-between items-center sticky top-0 z-10">
-                <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Gemini Clone</h1>
+                <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">Chatbot</h1>
                 <div className="flex items-center space-x-4">
                     <button
                         onClick={logout}
