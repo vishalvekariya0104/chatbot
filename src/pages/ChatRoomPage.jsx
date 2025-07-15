@@ -1,4 +1,3 @@
-// src/pages/ChatroomPage.jsx
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useChat } from '../context/ChatContext';
@@ -138,7 +137,7 @@ export const ChatroomPage = () => {
         };
         addMessageToChatroom(chatroomId, aiResponse);
         setIsGeminiTyping(false);
-    }, 3000);
+    }, 1500);
 
     const handleSendMessage = (text, imageUrl) => {
         const userMessage = {
