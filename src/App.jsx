@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { ChatProvider } from './context/ChatContext';
+import { ChatroomPage } from './pages/ChatRoomPage';
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
@@ -27,7 +28,14 @@ function AppContent() {
             </PrivateRoute>
           }
         />
-
+        <Route
+          path="/chat/:id"
+          element={
+            <PrivateRoute>
+              <ChatroomPage />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={
           <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-950">
             <h1 className="text-4xl font-bold text-gray-800 dark:text-white">404 - Page Not Found</h1>
