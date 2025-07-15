@@ -110,7 +110,7 @@ export const ChatInput = ({ onSendMessage }) => {
                 disabled={!message.trim() && !imagePreview}
                 aria-label="Send message"
             >
-                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-7 h-7 rotate-90" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l4.47-1.49a1 1 0 00.864-.864l1.49-4.47a1 1 0 00-.095-.919 1 1 0 00-.81-.439H8.473L7.35 15.362a.5.5 0 01-.894-.447l4.5-9a.5.5 0 01.894 0l4.5 9a.5.5 0 01-.894.447L11.527 8.638H9.932a1 1 0 00-.81.439 1 1 0 00-.095.919l1.49 4.47a1 1 0 00.864.864l4.47 1.49a1 1 0 001.169-1.409l-7-14z" />
                 </svg>
             </button>
