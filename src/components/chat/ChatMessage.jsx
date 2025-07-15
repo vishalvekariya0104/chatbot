@@ -20,7 +20,7 @@ export const ChatMessage = ({ message }) => {
 
   return (
     <div
-      className={`flex flex-col max-w-[85%] p-3 rounded-lg shadow-sm relative ${messageClasses}`}
+      className={`flex flex-col max-w-[49%] p-3 rounded-lg shadow-sm relative ${messageClasses}`}
       onMouseEnter={() => setShowCopy(true)}
       onMouseLeave={() => setShowCopy(false)}
     >
